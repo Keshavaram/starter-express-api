@@ -136,7 +136,7 @@ export const Restaurants_data = [
         cuisine: "French",
         eta: 45,
         price: 2000,
-        image: "julien resto.jpg",
+        image: "julien resto.JPG",
         address: "No.66/1, Shop No.12, High Street @ Miraya Rose By UKn, Varthur Rd, Siddapura, Whitefield, Bengaluru, Karnataka 560066"
     },
     {
