@@ -1,4 +1,4 @@
-const Restaurants_data = [
+export const Restaurants_data = [
     {
         id: 1,
         name: "Meghana Foods",
