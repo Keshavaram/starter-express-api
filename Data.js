@@ -56,7 +56,7 @@ export const Restaurants_data = [
         cuisine: "Chinese",
         eta: 45,
         price: 2000,
-        image: "Beijing Da Dong 大董烤鸭店.jpg",
+        image: "Beijing Da Dong.jpg",
         address: "2nd floor, 134, 17th H Main Rd, KHB Colony, 5th Block, Koramangala, Bengaluru, Karnataka 560095"
     },
     {
@@ -66,7 +66,7 @@ export const Restaurants_data = [
         cuisine: "Korean",
         eta: 65,
         price: 2000,
-        image: "Woo Lae Oak (Ulaeog) 우래옥.jpg",
+        image: "Woo Lae Oak.jpg",
         address: "N.K Enclave Building, 4th Cross, 13, Kammanahalli Main Rd, Opposite Himalaya Store, Chinnappa Layout, Kammanahalli, Bengaluru, Karnataka 560084"
     },
     {
