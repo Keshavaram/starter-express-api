@@ -15,7 +15,7 @@ export const Restaurants_data = [
         name: "Chai Point",
         rating: 3.1,
         cuisine: "Beverages",
-	c_id: 2,
+        c_id: 2,
         eta: 20,
         price: 100,
         image: "tea.jpg",

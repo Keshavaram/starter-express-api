@@ -2,22 +2,22 @@ import cors from "cors";
 import express from "express";
 import bodyParser from 'body-parser'
 import fs from "fs";
-const app = express()
 import {Restaurants_data} from "./Data.js"
 import {menu} from "./Menu.js";
 
-app.use(bodyParser.urlencoded({ extended: false }));
+const app = express()
+
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json())
 
 app.use(cors())
-app.use("/carouselImages",express.static("CarouselImages"))
+app.use("/carouselImages", express.static("CarouselImages"))
 app.use('/restaurantImages', express.static('RestaurantImages'));
-app.use('/icons',express.static('icons'))
+app.use('/icons', express.static('icons'))
 
 let orders = []
 
-app.get("/carouselFiles",async (req,res) =>
-{
+app.get("/carouselFiles", async (req, res) => {
     const testFolder = './CarouselImages';
     let imageNames = []
     fs.readdirSync(testFolder).forEach(file => {
@@ -31,35 +31,44 @@ app.get("/restaurantData", async (req, res) => {
     res.send(Restaurants_data)
 })
 
-app.get("/menu",(req,res) =>
-{
+app.get("/menu", (req, res) => {
     const cuisine = parseInt(req.query.id);
-    const data = menu.map((each) =>
-    {
-        if (each.c_id === cuisine)
-        {
+    let c_id;
+    const data = menu.map((each) => {
+        if (each.c_id === cuisine) {
+            c_id = each.c_id
             return each.menu
         }
     });
-    res.send({menuData: data})
+    res.send({menuData: data, c_id: c_id})
 })
 
-app.post('/cartData', function(req, res) {
+app.post('/cartData', function (req, res) {
     let updated = false
     for (let i = 0; i < orders.length; i++) {
-        if(orders[i].user === req.body.user)
-        {
-            orders[i].cart = req.body.cart
+        if (orders[i].user === req.body.user) {
+            orders[i].cart.push.apply(orders[i].cart,req.body.cart)
             updated = true
         }
     }
-    if(!updated) {
+    if (!updated) {
         orders.push(req.body)
     }
-    console.log(orders)
+    // orders.map((each) =>
+    // {
+    //     console.log(each.cart)
+    // })
 });
 
-app.listen(8080,() =>
-{
+app.get("/getCartDetails", (req, res) => {
+    const userId = req.query.user
+    for (let i = 0; i < orders.length; i++) {
+        if (orders[i].user === userId) {
+            res.send({cart: orders[i].cart})
+        }
+    }
+})
+
+app.listen(8080, () => {
     console.log("Server running at 8080");
 });
